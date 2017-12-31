@@ -11,19 +11,14 @@ class Weather extends React.Component {
       description: '',
       city : '',
       lat : '',
-      lon : ''
+      lon : '',
+      icon : ''
     }
     this.ktf = this.ktf.bind(this)
+    // this.getForecast = this.getForecast.bind(this)
   }
 
-  // api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}
-
   componentDidMount() {
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=37&lon=-122&APPID=863f07a3e7ed2906c37b7946eb2e69fe`)
-    .then((res) => {
-       console.log(res.data);
-    })
-
     axios.get('http://ip-api.com/json/')
     .then((res) => {
       this.setState({ lat : res.data.lat,
@@ -34,7 +29,8 @@ class Weather extends React.Component {
       axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&APPID=${APIKEYS.weather}`)
       .then((res) => {
         this.setState({ temp : res.data.main.temp,
-                        description : res.data.weather[0].description})
+                        description : res.data.weather[0].description,
+                        icon : res.data.weather[0].icon})
       })
     })
   }
@@ -44,18 +40,22 @@ class Weather extends React.Component {
     return f
   }
 
-  getForecast(lat, lon) {
-
-  }
+  // getForecast() { //api key does not work for daily forecast
+  //   axios.get(`http://api.openweathermap.org/data/2.5/forecast/daily?lat=${this.state.lat}&lon=${this.state.lon}&cnt=7&APPID=${APIKEYS.weather}`)
+  //   .then((res) => {
+  //     console.log(res);
+  //   })
+  // }
 
   render() {
     let temp = this.ktf(this.state.temp)
     let city = this.state.city
     let description = this.state.description
+    var img = this.state.icon !== '' ? "http://openweathermap.org/img/w/" + this.state.icon + ".png" : null
 
     return(
       <div>Weather
-        <div>Current Temperature in {city} : {temp}°F {description}</div>
+        <div>Current Temperature in {city} : {temp}°F {description} <img src={img} alt="image loading"/></div>
       </div>
     )
   }
