@@ -1,5 +1,4 @@
 import React from 'react';
-// import WeatherFunctions from '../utils/api';
 import axios from 'axios';
 import APIKEYS from '../config.js'
 
