@@ -16,3 +16,33 @@ span, article, footer, time, small {
   background: transparent;
   list-style: none;
 }
+
+/*#e27d60 red
+#85cdca light blue
+#e8a87c peach
+#c38d9e purple
+#41b3a3 teal*/
+
+
+.nav-bar {
+  background: #41B3A3;
+  width: 100%;
+  min-width: 720px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.splash {
+  width: 100vw;
+  height: 100vh;
+}
+
+.splash-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 720px;
+}
