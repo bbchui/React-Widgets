@@ -8,9 +8,9 @@ class Nav extends React.Component {
 
   render() {
     return(
-      <div className="nav-bar">
+      <nav className="nav-bar">
         <Clock />
-      </div>
+      </nav>
     )
   }
 }

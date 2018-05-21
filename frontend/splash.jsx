@@ -9,10 +9,13 @@ class Splash extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`https://api.unsplash.com/photos/random/?client_id=${APIKEYS.photos}`)
+    let page = Math.floor(10 * Math.random());
+    let x = Math.floor(29 * Math.random());
+    console.log(x);
+    axios.get(`https://api.unsplash.com/search/photos/?page=${page}&per_page=30&query=nature&client_id=${APIKEYS.photos}`)
     .then((res) => {
-      console.log(res)
-      this.setState({photo: res.data.urls.regular})
+      console.log(res.data.results)
+      this.setState({photo: res.data.results[x].urls.regular})
     })
     .catch((error) => {
       this.setState({photo:'https://source.unsplash.com/random'})
